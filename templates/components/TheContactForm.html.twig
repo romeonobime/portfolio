@@ -1,0 +1,34 @@
+<div {{ attributes }} class="md:max-w-[445px] md:w-full">
+	{{ form_start(form, { attr: {
+            'data-action': 'live#action:prevent',
+            'data-live-action-param': 'contact',
+            'class': 'relative pattern-rings-footer flex flex-col gap-8 items-end md:static',
+        }}) }}
+        <div class="flex flex-col gap-8 w-full z-10">
+            <twig:BaseFormTextField
+                type="text"
+                name="{{ field_name(form.name) }}"
+                value="{{ field_value(form.name) }}"
+                errors="{{ field_errors(form.name) }}"
+                placeholder="{{ field_label(form.name) }}"
+                isValid="{{form.name.vars.valid}}"
+            />
+            <twig:BaseFormTextField
+                type="email"
+                name="{{ field_name(form.email) }}"
+                value="{{ field_value(form.email) }}"
+                errors="{{ field_errors(form.email) }}"
+                placeholder="{{ field_label(form.email) }}"
+                isValid="{{form.email.vars.valid}}"
+            />
+            <twig:BaseFormTextAreaField
+                name="{{ field_name(form.message) }}"
+                value="{{ field_value(form.message) }}"
+                errors="{{ field_errors(form.message) }}"
+                placeholder="{{ field_label(form.message) }}"
+                isValid="{{form.message.vars.valid}}"
+            />
+        </div>
+        <button class="button-primary">send a message</button>
+	{{ form_end(form) }}
+</div>

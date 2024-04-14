@@ -1,6 +1,6 @@
 
-database:
-    type: postgresql:16
+portfolio_database:
+    type: mysql:11.0
     disk: 1024
 
 

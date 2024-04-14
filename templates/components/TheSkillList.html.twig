@@ -1,0 +1,7 @@
+<ul class="relative pattern-rings-section flex flex-col items-center gap-6 border-y border-white py-10 sm:flex-row sm:flex-wrap sm:justify-between sm:gap-14 sm:border-b-0 sm:py-[52px] md:py-[72px]">
+	{% for skill in this.skills %}
+        <li class="w-fit sm:w-1/3 md:w-3/12">
+            <twig:BaseCardSkills name="{{ skill.name }}" year="{{ skill.getYearExperience }}" />
+        </li>
+    {% endfor %}
+</ul>

@@ -1,3 +1,251 @@
-body {
-    background-color: skyblue;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-black: 0deg 0% 8%;
+        --color-primary: 153deg 71% 59%;
+        --color-dark-grey: 0deg 0% 14%;
+        --color-grey: 0deg 0% 85%;
+        --color-white: 0deg 0% 100%;
+        --color-danger: 7deg 100% 68%;
+        --container: 1110px;
+    }
+
+    @font-face {
+        font-family: "Space Grotesk";
+        src: url("./../fonts/SpaceGrotesk-VariableFont_wght.ttf");
+    }
+
+    * {
+        font-family: "Space Grotesk", sans-serif;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: hsl(var(--color-black));
+        overflow-x: hidden;
+    }
+
+    em {
+        font-style: normal;
+    }
+
+    li {
+        width: fit-content;
+    }
+
+    input, textarea {
+        background-color: transparent;
+    }
+
+    input:focus, textarea:focus {
+        outline: none;
+    }
+}
+
+@layer components {
+    .heading-xlarge {
+        font-weight: bold;
+        font-size: 40px;
+        line-height: 40px;
+        letter-spacing: -1.14px;
+
+    }
+
+    .heading-large {
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 40px;
+        letter-spacing: -1px;
+    }
+
+    .heading-medium {
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .body-medium {
+        font-size: 16px;
+        line-height: 26px;
+
+    }
+
+    .button-primary {
+        position: relative;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 26px;
+        letter-spacing: 2.29px;
+        text-transform: uppercase;
+        color: hsl(var(--color-white));
+        width: fit-content;
+        text-decoration: underline;
+        text-decoration-color: hsl(var(--color-primary));
+        text-underline-offset: 10px;
+        text-decoration-thickness: 2px;
+    }
+
+    .button-primary:hover {
+        color: hsl(var(--color-primary));
+    }
+
+    .text-field {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid hsl(var(--color-white));
+        caret-color: hsl(var(--color-white));
+        text-transform: uppercase;
+        color: hsl(var(--color-white));
+        @apply body-medium;
+    }
+
+    .error-field {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-bottom: 1rem;
+        caret-color: hsl(var(--color-white));
+        text-transform: uppercase;
+        color: hsl(var(--color-white));
+        border-bottom: 1px solid hsl(var(--color-danger));
+        @apply body-medium;
+    }
+
+    .error-message {
+        font-size: 16px;
+        line-height: 16px;
+        letter-spacing: -0.17px;
+        color: hsl(var(--color-danger));
+    }
+
+    .text-area {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid hsl(var(--color-white));
+        caret-color: hsl(var(--color-white));
+        color: hsl(var(--color-white));
+        @apply body-medium;
+    }
+
+    .text-area::placeholder {
+        text-transform: uppercase;
+    }
+
+    @media (min-width: 641px) {
+        .heading-xlarge {
+            font-size: 72px;
+            line-height: 72px;
+            letter-spacing: -2.5px;
+        }
+
+        .heading-large {
+            font-size: 48px;
+            line-height: 56px;
+            letter-spacing: -1.5px;
+        }
+
+        .body-medium {
+            font-size: 18px;
+            line-height: 28px;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .heading-xlarge {
+            font-size: 88px;
+            line-height: 88px;
+            letter-spacing: -2px;
+        }
+    }
+
+}
+
+@layer utilities {
+    .wrapper {
+        padding-left: max(calc(50% - var(--container) / 2), 2rem);
+        padding-right: max(calc(50% - var(--container) / 2), 2rem);
+    }
+
+    /* don't forget to make the parent in relative position so the pattern follows it */
+    .pattern-rings-header::after {
+        content: "";
+        background-image: url('../images/patterns/pattern-rings.svg');
+        position: absolute;
+        top: -265px;
+        left: -365px;
+        width: 530px;
+        height: 129px;
+    }
+
+    .pattern-circle-header::after {
+        content: "";
+        background-image: url('../images/patterns/pattern-circle.svg');
+        position: absolute;
+        width: 100%;
+        max-width: 129px;
+        height: 100%;
+        max-height: 129px;
+        right: -65px;
+    }
+
+    .pattern-rings-section::after {
+        content: "";
+        background-image: url('../images/patterns/pattern-rings.svg');
+        position: absolute;
+        bottom: -65px;
+        right: -335px;
+        width: 530px;
+        height: 129px;
+    }
+
+    .pattern-rings-footer::after {
+        content: "";
+        background-image: url('../images/patterns/pattern-rings.svg');
+        position: absolute;
+        bottom: 0px;
+        left: -395px;
+        width: 530px;
+        height: 129px;
+    }
+
+    @media (min-width: 641px) {
+        .pattern-circle-header::after {
+            right: -65px;
+            bottom: 0;
+            left: inherit;
+        }
+        .pattern-rings-header::after {
+            top: -65px;
+            left: -265px;
+            z-index: -1;
+        }
+        .pattern-rings-footer::after {
+            bottom: -65px;
+            left: -530px;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .pattern-circle-header::after {
+            right: -65px;
+            bottom: 32px;
+            left: -65px;
+
+        }
+
+        .pattern-rings-section::after {
+            bottom: 0;
+            right: -265px;
+        }
+        .pattern-rings-footer::after {
+            bottom: -65px;
+            left: -335px;
+        }
+    }
 }

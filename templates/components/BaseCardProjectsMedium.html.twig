@@ -1,0 +1,29 @@
+{% 	props
+	name = "",
+	thumbnail = "",
+	skills = [],
+	projectLink = "",
+	codeLink = ""
+%}
+
+<article class="flex flex-col gap-5">
+	<figure>
+		<img class="" src="{{ asset(thumbnail) }}" alt="this is a preview of the project {{ name }}"/>
+	</figure>
+	<div class="flex flex-col gap-5">
+		<div class="flex flex-col gap-[7px]">
+			<h2 class="heading-medium text-white uppercase">{{ name }}</h2>
+			<ul class="flex flex-wrap gap-[18px]">
+				{% for skill in skills %}
+					<li>
+						<span class="body-medium text-grey uppercase">{{ skill.name }}</span>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="flex gap-[30px]">
+			<a class="button-primary" href="{{ projectLink }}">View Project</a>
+			<a class="button-primary" href="{{ codeLink }}">View Code</a>
+		</div>
+	</div>
+</artcile>

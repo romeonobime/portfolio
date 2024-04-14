@@ -1,0 +1,35 @@
+{% props placeholder = "", name = "", value = "", errors = [], isValid = true %}
+
+{% if isValid and value != "" %}
+    <textarea
+        class="text-area w-full h-[107px] border-primary"
+        placeholder="{{ placeholder }}"
+        name="{{ name }}"
+        value="{{ value }}"
+        autocomplete="off"
+    />{{ value }}</textarea>
+    {% elseif isValid and value == "" %}
+    <textarea
+        class="text-area w-full h-[107px]"
+        placeholder="{{ placeholder }}"
+        name="{{ name }}"
+        value="{{ value }}"
+        autocomplete="off"
+    />{{ value }}</textarea>
+    {% else %}
+    <div class="relative flex flex-col items-end gap-[5px]">
+        <textarea
+            class="error-field w-full h-[107px]"
+            placeholder="{{ placeholder }}"
+            name="{{ name }}"
+            value="{{ value }}"
+            autocomplete="off"
+        />{{ value }}</textarea>
+            {% for error in errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        <div class="absolute right-0 top-0">
+            <twig:BaseIconWarning />
+        </div>
+    </div>
+{% endif %}

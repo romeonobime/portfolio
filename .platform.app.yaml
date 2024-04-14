@@ -1,4 +1,4 @@
-name: app
+name: portfolio
 
 type: php:8.3
 
@@ -16,7 +16,7 @@ runtime:
         - pdo_pgsql
         - sodium
         - xsl
-        
+
 
 variables:
     php:
@@ -35,17 +35,17 @@ web:
 
 mounts:
     "/var": { source: local, source_path: var }
-    
+
 
 relationships:
     database: "database:postgresql"
-    
+
 hooks:
     build: |
         set -x -e
 
         curl -fs https://get.symfony.com/cloud/configurator | bash
-        
+
         NODE_VERSION=18 symfony-build
 
     deploy: |
@@ -65,3 +65,6 @@ workers:
         commands:
             # Consume "async" messages (as configured in the routing section of config/packages/messenger.yaml)
             start: symfony console --time-limit=3600 --memory-limit=64M messenger:consume async
+
+relationships:
+    database: "portfolio_database:mysql"

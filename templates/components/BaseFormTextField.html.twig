@@ -1,29 +1,23 @@
 {% props placeholder = "", name = "", value = "", errors, isValid = true %}
 
-{% if isValid and value != "" %}
+<div class="relative flex flex-col items-end gap-[5px]">
     <input
-        class="text-field w-full border-primary"
+        class="
+            w-full
+            {{ isValid and value != "" ? "border-primary" : ""}}
+            {{ isValid == false ? "error-field" : "text-field"}}
+        "
         value="{{ value|lower }}"
         name="{{ name|lower }}"
         placeholder="{{ placeholder }}"
         autocomplete="off"
     />
-    {% elseif isValid and value == "" %}
-        <input
-            class="text-field w-full"
-            value="{{ value|lower }}"
-            name="{{ name|lower }}"
-            placeholder="{{ placeholder }}"
-            autocomplete="off"
-        />
-    {% else %}
-    <div class="relative flex flex-col items-end gap-[5px]">
-        <input value="{{ value }}" name = "{{ name }}" class="error-field w-full" placeholder="{{ placeholder }}" autocomplete="off"/>
-            {% for error in errors %}
-                <span class="error-message">{{ error }}</span>
-            {% endfor %}
+    {% if isValid == false %}
+        {% for error in errors %}
+            <span class="error-message">{{ error }}</span>
+        {% endfor %}
         <div class="absolute right-0 top-0">
             <twig:BaseIconWarning />
         </div>
-    </div>
-{% endif %}
+    {% endif %}
+</div>
